@@ -12,6 +12,12 @@ const CardModal = forwardRef((props, refModal) => {
         closeModal();
     }
 
+    const deleteCard = () => {
+        console.log(props);
+        props.deleteCard(card.key);
+        closeModal();
+    }
+
     const handleInputChange = (event) => {
         setCard({ ...card, [event.target.name]: event.target.value });
     }
@@ -73,7 +79,8 @@ const CardModal = forwardRef((props, refModal) => {
                 </Modal.Description>
             </Modal.Content>
             <Modal.Actions >
-                <Button negative onClick={() => closeModal()}>Cancelar</Button>
+                <Button negative floated='left' onClick={() => deleteCard()}>Excluir</Button>
+                <Button grey onClick={() => closeModal()}>Cancelar</Button>
                 <Button positive onClick={() => confirm()}>Salvar</Button>
             </Modal.Actions>
         </Modal >

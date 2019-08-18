@@ -1,17 +1,18 @@
+body {
+    background-color: #c11c3b !important;
+}
+
 .kanban-table td {
     vertical-align: top;
     width: 20%;
-    height: 90vh;
+    height: 89vh;
 }
 
 .kanban-table th {
     vertical-align: top;
     width: 20%;
     height: 4vh;
-}
-
-.kanban-table th {
-    margin-bottom: 1011px;
+    text-align: left;
 }
 
 .kanban-table, .kanban-table tr {
@@ -33,6 +34,17 @@
 
 .main-div {
     overflow-x: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.title-div {
+    height: 2h;
+    width: 100%;
+    color: #fff;
+    text-align: center;
+    font-size: 100%;
+    padding-top: 0.5vh;
 }
 
 .hand-cursor {

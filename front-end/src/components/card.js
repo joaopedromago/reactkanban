@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useDrag } from 'react-dnd'
 import CardModal from './cardModal.js'
 
-const Card = ({ card, alterCard }) => {
+const Card = ({ card, alterCard, deleteCard }) => {
 
     // eslint-disable-next-line
     const [isDragging, drag] = useDrag({
@@ -26,7 +26,7 @@ const Card = ({ card, alterCard }) => {
                 <div className="header">{card.title}</div>
                 <div className="description">{card.description}</div>
             </div>
-            <CardModal ref={refModal} card={card} alterCard={(card) => alterCard(card)}></CardModal>
+            <CardModal ref={refModal} card={card} alterCard={(card) => alterCard(card)} deleteCard={(key) => deleteCard(key)}></CardModal>
         </div>
     );
 }
