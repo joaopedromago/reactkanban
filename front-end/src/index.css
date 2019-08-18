@@ -1,6 +1,17 @@
 .kanban-table td {
     vertical-align: top;
     width: 20%;
+    height: 90vh;
+}
+
+.kanban-table th {
+    vertical-align: top;
+    width: 20%;
+    height: 4vh;
+}
+
+.kanban-table th {
+    margin-bottom: 1011px;
 }
 
 .kanban-table, .kanban-table tr {
@@ -11,7 +22,8 @@
     min-width: 300px;
     width: 100%;
     padding: 4px;
-    height: 90vh;
+    max-height: 90vh;
+    margin-bottom: 1vh !important;
 }
 
 .custom-scrollbar {
