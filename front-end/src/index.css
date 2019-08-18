@@ -1,13 +1,24 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.kanban-table td {
+    vertical-align: top;
+    width: 20%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.kanban-table, .kanban-table tr {
+    width: 100%;
+}
+
+.card-div {
+    min-width: 300px;
+    width: 100%;
+    padding: 4px;
+    height: 90vh;
+}
+
+.custom-scrollbar {
+    float: left;
+    overflow-y: scroll;
+}
+
+.main-div {
+    overflow-x: scroll;
 }
