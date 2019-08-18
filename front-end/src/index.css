@@ -48,5 +48,5 @@ body {
 }
 
 .hand-cursor {
-    cursor: pointer;
+    cursor: pointer !important;
 }
