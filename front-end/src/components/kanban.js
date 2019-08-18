@@ -68,13 +68,14 @@ const Kanban = () => {
             }
         }
 
+        setNewName('new column');
+        setCurrentChangeColumn(nextType.toString());
+
         setColumns([...columns, {
             type: nextType.toString(),
-            name: ""
+            name: newName,
+            color: newColor
         }]);
-
-        setCurrentChangeColumn(nextType.toString());
-        setNewName('new column');
     }
 
     const alterColumn = (type) => {
