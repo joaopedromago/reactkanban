@@ -3,12 +3,12 @@ import { useDrop } from 'react-dnd'
 import Board from './board.js'
 import AddCard from './addCard.js'
 
-function KanbanColumn({ cards, data, name, newCard, alterCard }) {
+const KanbanColumn = ({ cards, data, newCard, alterCard }) => {
 
-
+    // eslint-disable-next-line
     const [{ canDrop, isOver }, drop] = useDrop({
         accept: 'card',
-        drop: (props) => ({ name: name }),
+        drop: () => ({ name: data.type }),
         collect: monitor => ({
             isOver: monitor.isOver(),
             canDrop: monitor.canDrop(),

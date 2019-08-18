@@ -1,36 +1,75 @@
-import React, { forwardRef, useState, useRef, useImperativeHandle } from 'react';
-import { Button, Header, Modal } from 'semantic-ui-react'
+import React, { forwardRef, useState, useImperativeHandle } from 'react';
+import { Button, Modal, Form, Input, TextArea, Select } from 'semantic-ui-react'
+import CardColors from '../models/cardColor.js'
+
 const CardModal = forwardRef((props, refModal) => {
-    const confirm = (modal) => {
-        let newCard = props.card;
-        console.log(newCard)
-        // alterCard(newCard);
+
+    const [open, setOpen] = useState(false);
+    const [card, setCard] = useState(props.card);
+
+    const confirm = () => {
+        props.alterCard(card);
         closeModal();
+    }
+
+    const handleInputChange = (event) => {
+        setCard({ ...card, [event.target.name]: event.target.value });
+    }
+
+    const handleSelectChange = (event, { value, name }) => {
+        setCard({ ...card, [name]: value });
     }
 
     const closeModal = () => {
         setOpen(false);
     };
 
-    const [open, setOpen] = useState(false);
-    // const refModal = useRef();
-
     useImperativeHandle(refModal, () => ({
-        changeState() {
-            setOpen(!open);
+        showModal() {
+            if (!open) {
+                setOpen(true);
+            }
         }
     }));
 
-    return !open ? (<div></div>) : (
+    return (
         <Modal open={open}
-            onClose={() => closeModal()}
-            closeOnEscape={true} >
+            closeOnEscape={false}
+            closeOnDimmerClick={false}>
             <Modal.Header>Update Card</Modal.Header>
             <Modal.Content>
                 <Modal.Description>
-                    <Header>Default Profile Image</Header>
-                    <p>We've found the following gravatar image associated with your e-mail address.</p>
-                    <p>Is it okay to use this photo?</p>
+                    <Form>
+                        <Form.Group widths='equal'>
+                            <Form.Field
+                                id='form-input-control-first-name'
+                                control={Input}
+                                label='Title'
+                                placeholder='Title'
+                                value={card.title}
+                                onChange={handleInputChange}
+                                name='title'
+                            />
+                            <Form.Field
+                                control={Select}
+                                options={CardColors}
+                                label='Color'
+                                placeholder='Color'
+                                value={card.color}
+                                onChange={handleSelectChange}
+                                name='color'
+                            />
+                        </Form.Group>
+                        <Form.Field
+                            id='form-textarea-control-opinion'
+                            control={TextArea}
+                            label='Description'
+                            placeholder='Description'
+                            value={card.description}
+                            onChange={handleInputChange}
+                            name='description'
+                        />
+                    </Form>
                 </Modal.Description>
             </Modal.Content>
             <Modal.Actions >

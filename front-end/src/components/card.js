@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { useDrag } from 'react-dnd'
 import CardModal from './cardModal.js'
 
-function Card({ card, alterCard }) {
+const Card = ({ card, alterCard }) => {
 
+    // eslint-disable-next-line
     const [isDragging, drag] = useDrag({
         item: { id: card, type: 'card' },
         end: (item, monitor) => {
@@ -20,12 +21,12 @@ function Card({ card, alterCard }) {
 
     const refModal = useRef();
     return (
-        <div ref={drag} className={'ui fluid card hand-cursor ' + card.color} onClick={() => refModal.current.changeState()}>
+        <div ref={drag} className={'ui fluid card hand-cursor ' + card.color} onClick={() => refModal.current.showModal()}>
             <div className="content">
                 <div className="header">{card.title}</div>
                 <div className="description">{card.description}</div>
             </div>
-            <CardModal ref={refModal} card={card} alterCard={() => alterCard()}></CardModal>
+            <CardModal ref={refModal} card={card} alterCard={(card) => alterCard(card)}></CardModal>
         </div>
     );
 }

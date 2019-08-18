@@ -28,11 +28,11 @@
 
 .custom-scrollbar {
     float: left;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .main-div {
-    overflow-x: scroll;
+    overflow-x: auto;
 }
 
 .hand-cursor {

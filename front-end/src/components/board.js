@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './card.js'
 
-function Board({ cards, alterCard }) {
+const Board = ({ cards, alterCard }) => {
     return (
         <div className="ui cards card-div custom-scrollbar">
             {cards.map(item => (
