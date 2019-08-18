@@ -61,6 +61,7 @@ const Kanban = () => {
 
     const newColumn = () => {
         let nextType = 0;
+
         for (let i in columns) {
             if (parseInt(columns[i].type) >= nextType) {
                 nextType = parseInt(columns[i].type) + 1;
@@ -71,6 +72,7 @@ const Kanban = () => {
             type: nextType.toString(),
             name: ""
         }]);
+
         setCurrentChangeColumn(nextType.toString());
         setNewName('new column');
     }
@@ -81,6 +83,7 @@ const Kanban = () => {
             name: newName,
             color: newColor
         };
+
         let auxColumns = columns.slice();
         for (let i in auxColumns) {
             if (auxColumns[i].type === newColumn.type) {
