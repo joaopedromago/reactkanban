@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { DndProvider } from 'react-dnd'
+import React from 'react';
 import Card from './card.js'
 
-function Board({ cards }) {
+function Board({ cards, alterCard }) {
     return (
         <div className="ui cards card-div custom-scrollbar">
             {cards.map(item => (
-                <Card card={item} key={item.key}>
+                <Card card={item} key={item.key} alterCard={(card) => alterCard(card)}>
                 </Card>
             ))}
         </div>
