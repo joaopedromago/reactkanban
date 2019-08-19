@@ -13,7 +13,6 @@ const CardModal = forwardRef((props, refModal) => {
     }
 
     const deleteCard = () => {
-        console.log(props);
         props.deleteCard(card.key);
         closeModal();
     }

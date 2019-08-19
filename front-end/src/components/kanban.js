@@ -19,7 +19,6 @@ const Kanban = () => {
         axios.get(Environment.urlBackEnd + 'cards')
             .then(res => {
                 setCard(res.data);
-                console.log(res.data)
             });
 
         axios.get(Environment.urlBackEnd + 'columns')
@@ -98,7 +97,6 @@ const Kanban = () => {
         setNewName('new column');
         setCurrentChangeColumn(nextType);
         setColumns([...columns, newObj]);
-        console.log(newObj)
         axios.post(Environment.urlBackEnd + 'columns', newObj);
     }
 
@@ -153,8 +151,6 @@ const Kanban = () => {
     const handleSelectChange = (event, { value, name }) => {
         setNewColor(value);
     }
-
-
 
     return (
         <div className="main-div">
