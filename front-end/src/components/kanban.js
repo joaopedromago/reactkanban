@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import KanbanColumn from './kanbanColumn.js'
 import { Popup, Select } from 'semantic-ui-react'
 import CardColors from '../models/cardColor.js'
-import Environment from '../environment/environment.dev'
+import Environment from '../environment/environment'
+import ColumnDefault from '../models/columnModel'
 import axios from 'axios'
 
 const Kanban = () => {
 
-    const [columns, setColumns] = useState([]);
+    const [columns, setColumns] = useState(ColumnDefault);
 
     const [newName, setNewName] = useState('new column');
     const [newColor, setNewColor] = useState('grey');
@@ -158,7 +159,8 @@ const Kanban = () => {
     return (
         <div className="main-div">
             <div className="title-div">
-                React Kanban - by João Mago <button className="ui primary icon labeled button right floated" onClick={() => newColumn()}><i className="plus icon" ></i>Nova coluna</button>
+                {/* eslint-disable-next-line */}
+                React Kanban - by <a href="https://github.com/joaopedromago" target="_blank">João Mago</a> <button className="ui primary icon labeled button right floated" onClick={() => newColumn()}><i className="plus icon" ></i>Nova coluna</button>
             </div>
             <table className="ui unstackable celled table kanban-table">
                 <thead>
