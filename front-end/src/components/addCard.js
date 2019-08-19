@@ -12,7 +12,6 @@ const AddCard = ({ data, newCard }) => {
             type: type,
             color: 'green'
         }
-
         newCard(cardN);
     };
 

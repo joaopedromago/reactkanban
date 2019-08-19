@@ -1,20 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import KanbanColumn from './kanbanColumn.js'
 import { Popup, Select } from 'semantic-ui-react'
 import CardColors from '../models/cardColor.js'
+import Environment from '../environment/environment.dev'
+import axios from 'axios'
 
 const Kanban = () => {
 
-    const [columns, setColumns] = useState([{ type: "0", name: "Backlog", color: "blue" },
-    { type: "1", name: "To do", color: "red" },
-    { type: "2", name: "In progress", color: "green" },
-    { type: "3", name: "Testing", color: "yellow" },
-    { type: "4", name: "Done", color: "olive" }]);
+    const [columns, setColumns] = useState([]);
 
     const [newName, setNewName] = useState('new column');
     const [newColor, setNewColor] = useState('grey');
     const [cards, setCard] = useState([]);
     const [currentChangeColumn, setCurrentChangeColumn] = useState(null);
+
+    useEffect(() => {
+        axios.get(Environment.urlBackEnd + 'cards')
+            .then(res => {
+                setCard(res.data);
+                console.log(res.data)
+            });
+
+        axios.get(Environment.urlBackEnd + 'columns')
+            .then(res => {
+                setColumns(res.data);
+            });
+    }, [])
 
     const getBoardCard = (type) => {
         return cards.filter(x => x.type === type);
@@ -22,6 +33,10 @@ const Kanban = () => {
 
     const newCard = (card) => {
         setCard([...cards, card]);
+
+        axios.post(Environment.urlBackEnd + 'cards', card)
+            .then(res => {
+            });
     }
 
     const alterCard = (newCard) => {
@@ -33,6 +48,9 @@ const Kanban = () => {
             }
         }
 
+        axios.post(Environment.urlBackEnd + 'cards', newCard)
+            .then(res => {
+            });
         setCard(auxCards);
     }
 
@@ -45,6 +63,7 @@ const Kanban = () => {
             }
         }
 
+        axios.delete(Environment.urlBackEnd + 'cards/' + key);
         setCard(auxCards);
     }
 
@@ -52,6 +71,7 @@ const Kanban = () => {
         let auxCards = cards.slice();
         for (let i in auxCards) {
             if (auxCards[i].type === type) {
+                axios.delete(Environment.urlBackEnd + 'cards/' + auxCards[i].key);
                 auxCards.splice(i, 1);
             }
         }
@@ -68,14 +88,17 @@ const Kanban = () => {
             }
         }
 
-        setNewName('new column');
-        setCurrentChangeColumn(nextType.toString());
-
-        setColumns([...columns, {
-            type: nextType.toString(),
+        const newObj = {
+            type: nextType,
             name: newName,
             color: newColor
-        }]);
+        };
+
+        setNewName('new column');
+        setCurrentChangeColumn(nextType);
+        setColumns([...columns, newObj]);
+        console.log(newObj)
+        axios.post(Environment.urlBackEnd + 'columns', newObj);
     }
 
     const alterColumn = (type) => {
@@ -96,6 +119,8 @@ const Kanban = () => {
         setCurrentChangeColumn(null);
         setColumns(auxColumns);
         setNewName('new column');
+
+        axios.post(Environment.urlBackEnd + 'columns', newColumn);
     }
 
     const deleteColumn = (key) => {
@@ -110,10 +135,13 @@ const Kanban = () => {
             deleteCardByType(key);
             setColumns(auxColumns);
         }
+
+        axios.delete(Environment.urlBackEnd + 'columns/' + key);
     }
 
     const selectColumn = (column) => {
         setNewName(column.name);
+        setNewColor(column.color);
         setCurrentChangeColumn(column.type);
     }
 
@@ -124,6 +152,8 @@ const Kanban = () => {
     const handleSelectChange = (event, { value, name }) => {
         setNewColor(value);
     }
+
+
 
     return (
         <div className="main-div">
@@ -136,12 +166,12 @@ const Kanban = () => {
                         {columns.map(column =>
                             column.type === currentChangeColumn ? (
                                 <th key={column.type}>
-                                    <form class="ui form">
-                                        <div class="field">
+                                    <form className="ui form">
+                                        <div className="field">
                                             <label>Name</label>
                                             <input type="text" placeholder="New column name" value={newName} onChange={handleInputChange} />
                                         </div>
-                                        <div class="field">
+                                        <div className="field">
                                             <label>Color</label>
                                             <Select
                                                 control={Select}

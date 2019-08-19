@@ -80,7 +80,7 @@ const CardModal = forwardRef((props, refModal) => {
             </Modal.Content>
             <Modal.Actions >
                 <Button negative floated='left' onClick={() => deleteCard()}>Excluir</Button>
-                <Button grey onClick={() => closeModal()}>Cancelar</Button>
+                <Button onClick={() => closeModal()}>Cancelar</Button>
                 <Button positive onClick={() => confirm()}>Salvar</Button>
             </Modal.Actions>
         </Modal >
