@@ -64,6 +64,15 @@ const CardModal = forwardRef((props, refModal) => {
                                 onChange={handleSelectChange}
                                 name='color'
                             />
+                            <Form.Field
+                                control={Select}
+                                options={props.getColumnSelect()}
+                                label='Column'
+                                placeholder='Column'
+                                value={card.type}
+                                onChange={handleSelectChange}
+                                name='type'
+                            />
                         </Form.Group>
                         <Form.Field
                             id='form-textarea-control-opinion'
@@ -78,9 +87,9 @@ const CardModal = forwardRef((props, refModal) => {
                 </Modal.Description>
             </Modal.Content>
             <Modal.Actions >
-                <Button negative floated='left' onClick={() => deleteCard()}>Excluir</Button>
-                <Button onClick={() => closeModal()}>Cancelar</Button>
-                <Button positive onClick={() => confirm()}>Salvar</Button>
+                <Button negative floated='left' onClick={() => deleteCard()}>Delete</Button>
+                <Button onClick={() => closeModal()}>Cancel</Button>
+                <Button positive onClick={() => confirm()}>Save</Button>
             </Modal.Actions>
         </Modal >
     );

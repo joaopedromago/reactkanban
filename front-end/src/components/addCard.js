@@ -7,7 +7,7 @@ const AddCard = ({ data, newCard }) => {
         let cardN = {
             key: uuidv1(new Date()),
             title: name,
-            description: 'Clique para definir as informações deste card',
+            description: 'Click to change card settings',
             creationDate: new Date(),
             type: type,
             color: 'green'
@@ -18,7 +18,7 @@ const AddCard = ({ data, newCard }) => {
     return (
         <button className="ui labeled icon inverted fluid blue button" onClick={() => addNewCard(data.name, data.type)}>
             <i className="icon plus"></i>
-            Adicionar Card
+            Add Card
             </button>
     );
 }

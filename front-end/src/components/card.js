@@ -19,6 +19,10 @@ const Card = ({ card, alterCard, deleteCard }) => {
         }),
     });
 
+    const getColumnSelect = () => {
+        return { text: 'test', value: 0 }
+    };
+
     const refModal = useRef();
     return (
         <div ref={drag} className={'ui fluid card hand-cursor ' + card.color} onClick={() => refModal.current.showModal()}>
@@ -26,7 +30,7 @@ const Card = ({ card, alterCard, deleteCard }) => {
                 <div className="header">{card.title}</div>
                 <div className="description">{card.description}</div>
             </div>
-            <CardModal ref={refModal} card={card} alterCard={(card) => alterCard(card)} deleteCard={(key) => deleteCard(key)}></CardModal>
+            <CardModal ref={refModal} card={card} getColumnSelect={() => getColumnSelect()} alterCard={(card) => alterCard(card)} deleteCard={(key) => deleteCard(key)}></CardModal>
         </div>
     );
 }

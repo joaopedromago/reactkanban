@@ -156,7 +156,7 @@ const Kanban = () => {
         <div className="main-div">
             <div className="title-div">
                 {/* eslint-disable-next-line */}
-                React Kanban - by <a href="https://github.com/joaopedromago" target="_blank">João Mago</a> <button className="ui primary icon labeled button right floated" onClick={() => newColumn()}><i className="plus icon" ></i>Nova coluna</button>
+                React Kanban - by <a href="https://github.com/joaopedromago" target="_blank">João Mago</a> <button className="ui primary icon labeled button right floated" onClick={() => newColumn()}><i className="plus icon" ></i>New Column</button>
             </div>
             <table className="ui unstackable celled table kanban-table">
                 <thead>
