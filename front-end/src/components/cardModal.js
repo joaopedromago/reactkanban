@@ -7,6 +7,9 @@ const CardModal = forwardRef((props, refModal) => {
     const [open, setOpen] = useState(false);
     const [card, setCard] = useState(props.card);
 
+    // eslint-disable-next-line
+    const [columnsOption, setColumnsOption] = useState(props.getColumnSelect);
+    
     const confirm = () => {
         props.alterCard(card);
         closeModal();
@@ -66,7 +69,7 @@ const CardModal = forwardRef((props, refModal) => {
                             />
                             <Form.Field
                                 control={Select}
-                                options={props.getColumnSelect()}
+                                options={columnsOption}
                                 label='Column'
                                 placeholder='Column'
                                 value={card.type}

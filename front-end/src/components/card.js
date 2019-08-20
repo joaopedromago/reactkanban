@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useDrag } from 'react-dnd'
 import CardModal from './cardModal.js'
 
-const Card = ({ card, alterCard, deleteCard }) => {
+const Card = ({ card, alterCard, deleteCard, columns }) => {
 
     // eslint-disable-next-line
     const [isDragging, drag] = useDrag({
@@ -20,7 +20,12 @@ const Card = ({ card, alterCard, deleteCard }) => {
     });
 
     const getColumnSelect = () => {
-        return { text: 'test', value: 0 }
+        let columnsSelect = [];
+        for (let index = 0; index < columns.length; index++) {
+            const element = columns[index];
+            columnsSelect.push({ text: element.name, value: element.type })
+        }
+        return columnsSelect;
     };
 
     const refModal = useRef();
@@ -30,7 +35,7 @@ const Card = ({ card, alterCard, deleteCard }) => {
                 <div className="header">{card.title}</div>
                 <div className="description">{card.description}</div>
             </div>
-            <CardModal ref={refModal} card={card} getColumnSelect={() => getColumnSelect()} alterCard={(card) => alterCard(card)} deleteCard={(key) => deleteCard(key)}></CardModal>
+            <CardModal ref={refModal} card={card} getColumnSelect={getColumnSelect()} alterCard={(card) => alterCard(card)} deleteCard={(key) => deleteCard(key)}></CardModal>
         </div>
     );
 }

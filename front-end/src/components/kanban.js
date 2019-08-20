@@ -98,6 +98,9 @@ const Kanban = () => {
         setCurrentChangeColumn(nextType);
         setColumns([...columns, newObj]);
         axios.post(Environment.urlBackEnd + 'columns', newObj);
+        setTimeout(() => {
+            document.getElementById('editing').scrollIntoView();
+        });
     }
 
     const alterColumn = (type) => {
@@ -163,7 +166,7 @@ const Kanban = () => {
                     <tr>
                         {columns.map(column =>
                             column.type === currentChangeColumn ? (
-                                <th key={column.type}>
+                                <th key={column.type} id="editing">
                                     <form className="ui form">
                                         <div className="field">
                                             <label>Name</label>
@@ -197,7 +200,7 @@ const Kanban = () => {
                 <tbody>
                     <tr>
                         {columns.map(column => (
-                            <KanbanColumn key={column.type} cards={getBoardCard(column.type)} newCard={(card) => newCard(card)} alterCard={(newC) => alterCard(newC)} data={column} deleteCard={(key) => deleteCard(key)}></KanbanColumn>
+                            <KanbanColumn key={column.type} cards={getBoardCard(column.type)} newCard={(card) => newCard(card)} alterCard={(newC) => alterCard(newC)} data={column} deleteCard={(key) => deleteCard(key)} columns={columns}></KanbanColumn>
                         ))}
                     </tr>
                 </tbody>
